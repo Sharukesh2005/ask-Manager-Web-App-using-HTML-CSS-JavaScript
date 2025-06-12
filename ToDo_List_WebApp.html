@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    #taskInput {
+      width: 70%;
+      padding: 10px;
+    }
+    #addBtn {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background: #fff;
+      margin: 8px 0;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 5px;
+    }
+    .deleteBtn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <h1>My To-Do List</h1>
+  <input type="text" id="taskInput" placeholder="Enter a task...">
+  <button id="addBtn">Add</button>
+  <ul id="taskList"></ul>
+
+  <script>
+    const addBtn = document.getElementById('addBtn');
+    const taskInput = document.getElementById('taskInput');
+    const taskList = document.getElementById('taskList');
+
+    addBtn.onclick = function () {
+      const task = taskInput.value.trim();
+      if (task !== "") {
+        const li = document.createElement('li');
+        li.innerHTML = `${task} <button class="deleteBtn">Delete</button>`;
+        taskList.appendChild(li);
+
+        li.querySelector('.deleteBtn').onclick = function () {
+          li.remove();
+        };
+
+        taskInput.value = "";
+      }
+    };
+  </script>
+</body>
+</html>
